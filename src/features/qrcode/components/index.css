@@ -1,0 +1,105 @@
+/* Fundo geral */
+.qrcode-page {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #115189, #F08134);
+    padding: 1rem;
+  }
+  
+  /* Card central */
+  .qrcode-card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  /* Logo */
+  .qrcode-logo {
+    width: 160px;
+    margin-bottom: 1rem;
+  }
+  
+  /* Título */
+  .qrcode-title {
+    font-size: 1.5rem;
+    color: #115189;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* QR Code */
+  .qrcode-img {
+    width: 250px;
+    height: 250px;
+    border: 4px solid #F08134;
+    border-radius: 12px;
+    padding: 8px;
+    background: #fff;
+    transition: transform 0.3s;
+  }
+  
+  .qrcode-img:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Loading */
+  .qrcode-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #115189;
+  }
+  
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(17, 81, 137, 0.3);
+    border-top: 4px solid #115189;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Footer */
+  .qrcode-footer {
+    font-size: 0.85rem;
+    color: #555;
+    margin-top: 1.5rem;
+  }
+  
+  /* Animações */
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsividade */
+  @media (max-width: 480px) {
+    .qrcode-card {
+      padding: 1.5rem;
+    }
+    .qrcode-img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+  
