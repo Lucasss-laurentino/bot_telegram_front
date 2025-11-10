@@ -6,7 +6,7 @@ import { useMorador } from "../context/MoradorContext";
 import Errors from "../../../shared/components/errors/Errors";
 import { useState } from "react";
 import { IMaskInput } from "react-imask";
-import { INovoMorador } from "../interface/MoradorInterface";
+import Loading from "../../../shared/components/Loading/Loading";
 
 export const CreateMorador = () => {
   const {
@@ -19,7 +19,7 @@ export const CreateMorador = () => {
     resolver: yupResolver(CreateMoradorSchema),
   });
 
-  const { createMorador } = useMorador();
+  const { createMorador, loading } = useMorador();
   const [imagem, setImagem] = useState<File | null>(null);
 
   return (
@@ -58,6 +58,8 @@ export const CreateMorador = () => {
                 value={field.value || ""}
                 onAccept={(value: string) => field.onChange(value)}
                 onBlur={(e) => field.onBlur()}
+                type="tel"
+                inputMode="numeric"
               />
             )}
           />
@@ -74,6 +76,8 @@ export const CreateMorador = () => {
                 placeholder="Digite seu número de contato"
                 onAccept={(value: string) => field.onChange(value)}
                 onBlur={(e) => field.onBlur()}
+                type="tel"
+                inputMode="numeric"
               />
             )}
           />
@@ -106,8 +110,7 @@ export const CreateMorador = () => {
               />
             </div>
           )}
-
-          <button type="submit">Cadastrar</button>
+          {loading ? <Loading /> : <button type="submit">Cadastrar</button>}
         </form>
       </div>
     </div>

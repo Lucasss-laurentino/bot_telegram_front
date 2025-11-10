@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { MoradorContextType } from "../types/MoradorTypes";
 import { INovoMorador } from "../interface/MoradorInterface";
-import { FormatarDadosMorador } from "../utils/MoradorUtils";
+import { FormatarDadosMorador, redimensionarImagem } from "../utils/MoradorUtils";
 import { CreateMorador } from "../service/MoradorService";
 
 export const MoradorContext = createContext<MoradorContextType | null>(null);
@@ -25,6 +25,8 @@ export const MoradorProvider = ({
   const createMorador = async (novoMorador: INovoMorador) => {
     try {
       setLoading(true);
+      const fotoRedimensionada = await redimensionarImagem(novoMorador.Foto);
+      novoMorador.Foto = fotoRedimensionada;
       const moradorFormatado = await FormatarDadosMorador(novoMorador);
       await CreateMorador(moradorFormatado);
     } catch (error: any) {
@@ -39,7 +41,7 @@ export const MoradorProvider = ({
   };
 
   return (
-    <MoradorContext.Provider value={{ createMorador }}>
+    <MoradorContext.Provider value={{ createMorador, loading, setLoading, erro, setErro }}>
       {children}
     </MoradorContext.Provider>
   );
