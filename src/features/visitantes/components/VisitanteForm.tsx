@@ -31,9 +31,6 @@ export function VisitanteForm() {
       newErrors.nome = "O nome é obrigatório.";
     }
 
-    if (formData.nome?.trim().length! < 3) {
-      newErrors.nome = "O nome deve ter pelo menos 3 caracteres.";
-    }
     if (!formData.documento || formData.documento.trim() === "") {
       newErrors.documento = "O documento é obrigatório.";
     }
