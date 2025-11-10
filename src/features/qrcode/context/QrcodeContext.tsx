@@ -23,11 +23,10 @@ export const QrcodeProvider = ({children}: {children: React.ReactNode}) => {
        } catch(error: any) {
         throw new Error("Erro ao buscar qrcode");
        }
-    
     }
 
     return (
-        <QrcodeContext.Provider value={{}}>
+        <QrcodeContext.Provider value={{qrcode, setQrcode, getQrcode}}>
             {children}
         </QrcodeContext.Provider>
     )
