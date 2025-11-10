@@ -10,8 +10,8 @@ export const Qrcode = () => {
     }, []);
 
     return (
-        <div className="h-screen flex items-center justify-center bg-green-500 text-white">
-            <h1 className="text-3xl font-bold">Tailwind funcionando 🎉</h1>
+        <div className="container-fluid d-flex justify-content-center align-items-center bg-dark">
+            <h1 className="text-white">Tailwind funcionando 🎉</h1>
         </div>
     );
 }

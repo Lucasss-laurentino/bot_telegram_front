@@ -31,3 +31,4 @@ export const QrcodeProvider = ({children}: {children: React.ReactNode}) => {
         </QrcodeContext.Provider>
     )
 }
+
