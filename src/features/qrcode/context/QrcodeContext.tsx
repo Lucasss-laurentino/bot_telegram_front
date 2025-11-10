@@ -18,7 +18,7 @@ export const QrcodeProvider = ({children}: {children: React.ReactNode}) => {
     
     const getQrcode = async () => {
        try {
-        const response = await http.post<string>("qrcode/gerar");
+        const response = await http.post("qrcode/gerar");
         setQrcode(response.data);
        } catch(error: any) {
         throw new Error("Erro ao buscar qrcode");
