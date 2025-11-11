@@ -1,5 +1,9 @@
-import { INovoMorador } from "../interface/MoradorInterface";
+import { INovoVisitante } from "../interface/INovoVisitante";
 
+/**
+ * Redimensiona uma imagem para o tamanho máximo especificado,
+ * mantendo a proporção original e retornando um novo arquivo.
+ */
 export const redimensionarImagem = (file: File, maxSize = 800): Promise<File> =>
   new Promise((resolve, reject) => {
     const img = new Image();
@@ -22,6 +26,7 @@ export const redimensionarImagem = (file: File, maxSize = 800): Promise<File> =>
       canvas.height = h;
       const ctx = canvas.getContext("2d");
       if (!ctx) return reject("Erro ao processar a imagem");
+
       ctx.drawImage(img, 0, 0, w, h);
 
       canvas.toBlob(
@@ -38,11 +43,25 @@ export const redimensionarImagem = (file: File, maxSize = 800): Promise<File> =>
     reader.readAsDataURL(file);
   });
 
-export function FormatarDadosMorador(novoMorador: INovoMorador): FormData {
+/**
+ * Converte os dados do visitante em um objeto FormData
+ * compatível com a API.
+ */
+export function FormatarDadosVisitante(
+  novoVisitante: INovoVisitante
+): FormData {
   const formData = new FormData();
-  formData.append("Nome", novoMorador.Nome);
-  //formData.append('Cpf', novoMorador.Cpf);
-  formData.append("Celular", novoMorador.Celular);
-  formData.append("Foto", novoMorador.Foto);
+  formData.append("Nome", novoVisitante.Nome);
+  formData.append("Documento", novoVisitante.Documento || "");
+  formData.append("TipoVisitante", novoVisitante.TipoVisitante);
+  if (novoVisitante.Placa) formData.append("Placa", novoVisitante.Placa);
+  if (novoVisitante.CorCarroVisita)
+    formData.append("CorCarroVisita", novoVisitante.CorCarroVisita);
+  if (novoVisitante.CorCarroVisita)
+    formData.append("CarroCor", novoVisitante.CorCarroVisita);
+  if (novoVisitante.CarroMarca)
+    formData.append("CarroMarca", novoVisitante.CarroMarca);
+  if (novoVisitante.Foto) formData.append("Foto", novoVisitante.Foto);
+
   return formData;
 }

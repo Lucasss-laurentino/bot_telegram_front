@@ -46,7 +46,7 @@ export const CreateMorador = () => {
           />
           {errors.Nome?.message && <Errors error={errors.Nome.message} />}
 
-          <label>Cpf</label>
+          {/* <label>Cpf</label>
           <Controller
             name="Cpf"
             control={control}
@@ -63,7 +63,7 @@ export const CreateMorador = () => {
               />
             )}
           />
-          {errors.Cpf?.message && <Errors error={errors.Cpf.message} />}
+          {errors.Cpf?.message && <Errors error={errors.Cpf.message} />} */}
 
           <label>Telefone</label>
           <Controller

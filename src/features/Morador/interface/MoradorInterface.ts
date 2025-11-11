@@ -1,6 +1,6 @@
 export interface INovoMorador {
-    Nome: string,
-    Celular: string,
-    Cpf: string,
-    Foto: File
+  Nome: string;
+  Celular: string;
+  //Cpf: string,
+  Foto: File;
 }
