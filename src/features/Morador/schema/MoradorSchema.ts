@@ -39,10 +39,10 @@ export const CreateMoradorSchema = yup.object({
     .required("O celular é obrigatório")
     .transform((value: string) => (value ? value.replace(/\D/g, "") : "")),
 
-  Cpf: yup
-    .string()
-    .required("O CPF é obrigatório")
-    .transform((value: string) => (value ? value.replace(/\D/g, "") : ""))
-    .matches(/^\d{11}$/, "O CPF deve ter 11 dígitos"),
+  // Cpf: yup
+  //   .string()
+  //   .required("O CPF é obrigatório")
+  //   .transform((value: string) => (value ? value.replace(/\D/g, "") : ""))
+  //   .matches(/^\d{11}$/, "O CPF deve ter 11 dígitos"),
 });
 

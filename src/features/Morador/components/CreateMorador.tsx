@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { CreateMoradorSchema } from "../schema/MoradorSchema";
 import { useMorador } from "../context/MoradorContext";
 import Errors from "../../../shared/components/errors/Errors";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IMaskInput } from "react-imask";
 import Loading from "../../../shared/components/Loading/Loading";
 
@@ -19,8 +19,12 @@ export const CreateMorador = () => {
     resolver: yupResolver(CreateMoradorSchema),
   });
 
-  const { createMorador, loading } = useMorador();
+  const { createMorador, loading, erro, setErro } = useMorador();
   const [imagem, setImagem] = useState<File | null>(null);
+
+  useEffect(() => {
+    if(imagem) setErro(null);
+  }, [imagem])
 
   return (
     <div className="morador-page">
@@ -110,6 +114,7 @@ export const CreateMorador = () => {
               />
             </div>
           )}
+                 {erro && <Errors error={erro}/>}
           {loading ? <Loading /> : <button type="submit">Cadastrar</button>}
         </form>
       </div>

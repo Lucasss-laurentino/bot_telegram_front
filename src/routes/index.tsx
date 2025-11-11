@@ -5,23 +5,26 @@ import { CreateMorador } from "../features/Morador/components/CreateMorador";
 import { MoradorProvider } from "../features/Morador/context/MoradorContext";
 import { CreateVisitante } from "../features/Visitantes/components/CreateVisitante";
 import { VisitanteProvider } from "../features/Visitantes/context/VisitanteContext";
+import { TelegramProvider } from "../features/Telegram_dados_iniciais/context/TelegramDadosContext";
 
 export default function AppRouter() {
   return (
-    <QrcodeProvider>
-      <MoradorProvider>
-        <VisitanteProvider>
-          {" "}
-          {/* <-- Adicione aqui */}
-          <Router>
-            <Routes>
-              <Route path="/" element={<Qrcode />} />
-              <Route path="/CreateMorador" element={<CreateMorador />} />
-              <Route path="/CreateVisitantes" element={<CreateVisitante />} />
-            </Routes>
-          </Router>
-        </VisitanteProvider>
-      </MoradorProvider>
-    </QrcodeProvider>
+    <TelegramProvider>
+      <QrcodeProvider>
+        <MoradorProvider>
+          <VisitanteProvider>
+            {" "}
+            {/* <-- Adicione aqui */}
+            <Router>
+              <Routes>
+                <Route path="/" element={<Qrcode />} />
+                <Route path="/CreateMorador" element={<CreateMorador />} />
+                <Route path="/CreateVisitantes" element={<CreateVisitante />} />
+              </Routes>
+            </Router>
+          </VisitanteProvider>
+        </MoradorProvider>
+      </QrcodeProvider>
+    </TelegramProvider>
   );
 }

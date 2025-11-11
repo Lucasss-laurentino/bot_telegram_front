@@ -9,7 +9,7 @@ export const MoradorContext = createContext<MoradorContextType | null>(null);
 export const useMorador = () => {
   const context = useContext(MoradorContext);
   if (!context) {
-    throw new Error("useMorador must be used within a QrcodeProvider");
+    throw new Error("useMorador must be used within a provider");
   }
   return context;
 };
