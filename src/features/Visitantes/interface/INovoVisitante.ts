@@ -1,9 +1,11 @@
 export interface INovoVisitante {
   Nome: string;
-  Documento: string;
+  Cpf: string;
   TipoVisitante: string;
-  Placa: string;
-  CorCarroVisita: string;
-  CarroMarca: string;
+  DataInicio: Date;
+  DataFim: Date;
+  Placa: string | null;
+  CorCarroVisita: string | null;
+  MarcaCarroVisita: string | null;
   Foto: File;
 }

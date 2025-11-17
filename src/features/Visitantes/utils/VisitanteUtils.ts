@@ -1,3 +1,4 @@
+import { formatDataInicio, formatDataFim } from "../../../shared/utils/DateUtils";
 import { INovoVisitante } from "../interface/INovoVisitante";
 
 /**
@@ -43,6 +44,15 @@ export const redimensionarImagem = (file: File, maxSize = 800): Promise<File> =>
     reader.readAsDataURL(file);
   });
 
+
+  function formatarParaBR(date: Date): string {
+  const dia = String(date.getDate()).padStart(2, "0");
+  const mes = String(date.getMonth() + 1).padStart(2, "0");
+  const ano = date.getFullYear();
+  return `${dia}/${mes}/${ano}`;
+}
+
+
 /**
  * Converte os dados do visitante em um objeto FormData
  * compatível com a API.
@@ -52,16 +62,18 @@ export function FormatarDadosVisitante(
 ): FormData {
   const formData = new FormData();
   formData.append("Nome", novoVisitante.Nome);
-  formData.append("Documento", novoVisitante.Documento || "");
+  formData.append("Cpf", novoVisitante.Cpf);
   formData.append("TipoVisitante", novoVisitante.TipoVisitante);
   if (novoVisitante.Placa) formData.append("Placa", novoVisitante.Placa);
   if (novoVisitante.CorCarroVisita)
     formData.append("CorCarroVisita", novoVisitante.CorCarroVisita);
   if (novoVisitante.CorCarroVisita)
     formData.append("CarroCor", novoVisitante.CorCarroVisita);
-  if (novoVisitante.CarroMarca)
-    formData.append("CarroMarca", novoVisitante.CarroMarca);
+  if (novoVisitante.MarcaCarroVisita)
+    formData.append("MarcaCarroVisita", novoVisitante.MarcaCarroVisita);
   if (novoVisitante.Foto) formData.append("Foto", novoVisitante.Foto);
+  formData.append("DataInicio", formatDataInicio(novoVisitante.DataInicio));
+  formData.append("DataFim",  formatDataFim(novoVisitante.DataFim));
 
   return formData;
 }

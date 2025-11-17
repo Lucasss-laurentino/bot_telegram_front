@@ -1,0 +1,61 @@
+/* Container fixo no rodapé sem afetar o layout */
+.popup-container {
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+
+  /* Invisível e fora da tela inicialmente */
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: transform 0.45s ease, opacity 0.35s ease;
+
+  z-index: 999999;
+}
+
+/* Quando ativado */
+.popup-container.active {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Popup verde de sucesso */
+.popup-content {
+  background: #28a745; /* verde sucesso */
+  color: #ffffff;
+
+  padding: 14px 22px;
+  border-radius: 14px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  pointer-events: auto;
+
+  animation: popupFade 0.3s ease;
+}
+
+/* Efeito suave */
+@keyframes popupFade {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Ajuste mobile */
+@media (max-width: 480px) {
+  .popup-content {
+    font-size: 14px;
+    padding: 12px 18px;
+  }
+}

@@ -37,6 +37,22 @@
   background: transparent;
 }
 
+.linhaCadastrarVeiculo {
+  display: flex;
+  font-weight: 700;
+  color: rgb(155, 152, 152);
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0px;
+}
+
+.linhaCadastrarVeiculo::before,
+.linhaCadastrarVeiculo::after {
+  content: "";
+  flex: 1;
+  border: 1px solid rgb(155, 152, 152);
+}
+
 /* Logo */
 .visitante-logo {
   width: 160px;
@@ -80,6 +96,37 @@
   border-color: #f08134;
   box-shadow: 0 0 5px rgba(240, 129, 52, 0.5);
 }
+
+/* Data */
+.date-range {
+  display: flex;
+  flex-wrap: wrap; /* permite quebrar linha */
+  gap: 10px;
+  width: 100%;
+}
+
+.date-item {
+  flex: 1;
+  min-width: 150px; /* impede ficar pequeno demais */
+  display: flex;
+  flex-direction: column;
+}
+
+.date-item span {
+  font-size: 12px;
+  margin-bottom: 4px;
+  color: #555;
+}
+
+.date-item input[type="date"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 
 /* Botão */
 .visitante-form button {

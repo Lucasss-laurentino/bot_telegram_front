@@ -1,7 +1,10 @@
 import { createContext, useContext, useState } from "react";
 import { MoradorContextType } from "../types/MoradorTypes";
 import { INovoMorador } from "../interface/MoradorInterface";
-import { FormatarDadosMorador, redimensionarImagem } from "../utils/MoradorUtils";
+import {
+  FormatarDadosMorador,
+  redimensionarImagem,
+} from "../utils/MoradorUtils";
 import { CreateMorador } from "../service/MoradorService";
 
 export const MoradorContext = createContext<MoradorContextType | null>(null);
@@ -21,27 +24,41 @@ export const MoradorProvider = ({
 }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [erro, setErro] = useState<string | null>(null);
+  const [initialData, setInitialData] = useState<string | null>(null);
 
   const createMorador = async (novoMorador: INovoMorador) => {
     try {
+      if (!initialData) throw new Error("Ação não permitida!");
       setLoading(true);
       const fotoRedimensionada = await redimensionarImagem(novoMorador.Foto);
       novoMorador.Foto = fotoRedimensionada;
       const moradorFormatado = await FormatarDadosMorador(novoMorador);
-      await CreateMorador(moradorFormatado);
+      await CreateMorador(moradorFormatado, initialData);
+      return true;
     } catch (error: any) {
       if (error.response?.data && error.response?.data?.code === 1) {
         setErro(error.response.data.message);
-        return;
+        return false;
       }
-      setErro("Erro ao fazer login");
+      setErro(error.message);
+      return false;
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <MoradorContext.Provider value={{ createMorador, loading, setLoading, erro, setErro }}>
+    <MoradorContext.Provider
+      value={{
+        createMorador,
+        loading,
+        setLoading,
+        erro,
+        setErro,
+        initialData,
+        setInitialData,
+      }}
+    >
       {children}
     </MoradorContext.Provider>
   );
